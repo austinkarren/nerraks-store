@@ -1,0 +1,5 @@
+<div class="flex justify-center">
+    {% for link in linklists['main-menu'].links %}    
+        <h1 clas="px-2">{{ link.title | link_to: link.url }}</h1>    
+    {% endfor %}
+</div>
