@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply h-full antialiased font-body text-base text-accent bg-surface;
+    @apply h-full antialiased font-body text-base text-accent;
   }
 
   model-viewer {
