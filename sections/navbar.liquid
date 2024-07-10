@@ -1,4 +1,4 @@
-<nav-bar class="relative bg-white border-b border-gray-300 w-full flex items-center justify-between px-12 h-fit">
+<nav-bar class="relative border-b border-gray-400 w-full flex items-center justify-between px-12 h-fit">
   <div class="flex items-center">
     <a href="{{ routes.root_url }}">
       <img src="{{ settings.logo  |  image_url: height: '50px' }}" width="100%" height="100%">
@@ -8,15 +8,39 @@
   <div>
     <ul class="flex ">
       {% for link in linklists['main-menu'].links %}
-        <li class="parent-link px-8 text-lg text-red-950 group py-5">
+        <li class="parent-link px-6 text-lg group py-5">
           <a class="cursor-pointer my-4">{{ link.title }}</a>
-          <ul class="absolute top-full left-0 border-t invisible group-hover:visible flex-col bg-white w-screen  border-b border-gray-300 px-7 py-5">
-            {% for child_link in link.links %}
-              <li class="px-4 py-3 w-fit">
-                <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-              </li>
-            {% endfor %}
-          </ul>
+
+          <div class="absolute top-full left-0 border-t invisible group-hover:visible w-screen border-b border-gray-400 px-12 py-5 flex">
+            <div class="flex flex-col pr-11 border-r border-gray-200 w-[500px]">
+              {% for child_link in link.links %}
+                <a class="py-3 hover:underline underline-offset-8" href="{{ child_link.url }}">{{ child_link.title }}</a>
+              {% endfor %}
+              <a class="pt-4 underline text-sm font-semibold">Shop all saw blades</a>
+            </div>
+
+            <div class="pl-10 w-full">
+              {% if link.title == 'Saw Blades' %}
+                <p class="mx-auto pb-5">Popular Saw Blades</p>
+                <div class="flex ">
+                  <div class="flex flex-col mr-12 max-w-[225px]">
+                    <img class="w-full h-auto object-cover" src="{{ section.settings.image  |  image_url }}" width="100%" height="100%">
+                    <p class="text-center font-bold text-sm pt-2">Melamine 10x80</p>
+                  </div>
+                  <div class="flex flex-col mr-12">
+                    <img class="w-full h-auto object-cover max-w-[225px]" src="{{ section.settings.image  |  image_url }}" width="100%" height="100%">
+                    <p class="text-center font-bold text-sm">AT pt-2B Crosscut 10x80</p>
+                  </div>
+                  <div class="flex flex-col">
+                    <img class="w-full h-auto object-cover max-w-[225px]" src="{{ section.settings.image  |  image_url }}" width="100%" height="100%">
+                    <p class="text-center font-bold text-sm">Mitre pt-2 Saw Blade 12x80</p>
+                  </div>
+                </div>
+              {% elsif link.title == 'Router Bits' %}
+                <p class="mx-auto">Popular Router Bits</p>
+              {% endif %}
+            </div>
+          </div>
         </li>
       {% endfor %}
     </ul>
@@ -37,3 +61,16 @@
     margin-bottom: -2px;
   }
 </style>
+
+{% schema %}
+{
+  "name": "Saw Blades",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Saw Blade Image"
+    }
+  ]
+}
+{% endschema %}

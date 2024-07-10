@@ -1,21 +1,3 @@
-<div class=" bg-white border-b border-gray-500">
-  <ul class="flex justify-center items-center relative">
-
-    <li class="">
-      <img src="{{ settings.logo  |  image_url: width: '150px' }}" width="100%" height="100%"/>
-    </li>
-
-    {% for link in linklists['main-menu'].links %}
-      <li class=" px-8 py-4 text-lg text-red-950 group hover:underline underline-offset-8">
-        <a class="cursor-pointer">{{ link.title }}</a>                
-        <ul class="absolute left-0 hidden group-hover:flex group-hover:border-t flex-col bg-white mt-4 w-screen justify-center border-b border-gray-500 py-4 px-7">
-          {% for child_link in link.links %}
-            <li class="px-4 py-3 hover:underline underline-offset-8 w-fit">
-              <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      </li>
-    {% endfor %}
-  </ul>
+<div class="border-b border-gray-500 py-2 bg-black">
+  <p class="text-center text-white italic text-sm"><span class="underline cursor-pointer">Subscribe</span> to our newsletter to save 10% on your order!</p>
 </div>

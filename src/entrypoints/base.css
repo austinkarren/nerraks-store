@@ -16,9 +16,9 @@
     @apply font-heading font-semibold;
   }
 
-  p > span {
+  /* p > span {
     @apply font-mono text-lg font-semibold bg-secondary/20 text-secondary py-1 px-2 rounded;
-  }
+  } */
 }
 
 @layer components {
