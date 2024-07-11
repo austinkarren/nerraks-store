@@ -1,3 +1,25 @@
 <div class="border-b border-gray-500 py-2 bg-black">
-  <p class="text-center text-white italic text-sm"><span class="underline cursor-pointer">Subscribe</span> to our newsletter to save 10% on your order!</p>
+  <p class="text-center text-white italic text-sm"><span class="underline cursor-pointer">{{ section.settings.linked_text }}</span> {{ section.settings.message }}</p>
 </div>
+
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    
+      {
+        "type": "text",
+        "id": "linked_text",
+        "label": "Announcement Bar CTA",
+        "default": "Subscribe"
+      },
+      {
+        "type": "text",
+        "id": "message",
+        "label": "Announcement Bar Message",
+        "default": "to our newsletter and save 10% on your order!"
+      }
+    ]
+}
+{% endschema %}
