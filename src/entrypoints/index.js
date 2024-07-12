@@ -1,4 +1,4 @@
 import ProductForm from '../product-form'
-import '../scripts/navbar'
+import '../scripts/index.js'
 
 window.customElements.define('product-form', ProductForm)

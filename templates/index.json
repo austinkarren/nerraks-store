@@ -8,7 +8,10 @@
     "product_card_wiwEwW": {
       "type": "product-card",
       "settings": {
-        "product": "saw-blade"
+        "product": [
+          "router-bit",
+          "saw-blade-three"
+        ]
       }
     }
   },
