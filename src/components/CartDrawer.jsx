@@ -7,7 +7,13 @@ const CartDrawer = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
-    // Fetch initial cart data
+    //ICON EVENT LISTENER
+    const cartIcon = document.querySelector('[data-cart-icon]');
+    cartIcon.addEventListener('click', () => {
+      setIsDrawerOpen(true);
+    })
+
+    // RETRIEVE CART OBJECT FROM THE WINDOW
     try {
       const initialCartData = JSON.parse(window.cartData);
       setCartData(initialCartData);
@@ -15,12 +21,12 @@ const CartDrawer = () => {
       console.error("Error parsing initial cart data:", error);
     }
 
+    //CART HANDLER POSTS UPDATES TO THE CART AND THEN CALLS THE UP TO DATE CART DATA
     const handleAddToCart = async (event) => {
       event.preventDefault();
       event.stopPropagation();
 
       const productId = event.currentTarget.dataset.productId;
-
       const formData = {
         'items': [{
           'id': productId,
@@ -28,8 +34,8 @@ const CartDrawer = () => {
         }]
       };
 
+      // ADD ITEM TO CART
       try {
-        // ADD ITEM TO CART
         await fetch(`${window.routes.cart_add_url}.js`, {
           method: 'POST',
           headers: {
@@ -42,39 +48,45 @@ const CartDrawer = () => {
         const cartResponse = await fetch(`${window.routes.cart_url}.js`);
         const updatedCartData = await cartResponse.json();
 
-        // UPDATE STATE
+        console.log("CART DATA", updatedCartData)
+
+        // UPDATE CARTDRAWER STATES
         setCartData(updatedCartData);
         setIsDrawerOpen(true);
 
       } catch (error) {
         console.error("Error adding to cart:", error);
       }
+
     };
 
-    // Attach event listeners to add-to-cart buttons
+    // ATC BUTTON LISTENERS
     const atcButtons = document.querySelectorAll('[name="add"]');
     atcButtons.forEach(button => {
       button.addEventListener('click', handleAddToCart);
     });
 
-    // Cleanup event listeners on component unmount
+    // REMOVE EVENT LISTENERS IF COMPONENT UNMOUNTS
     return () => {
       atcButtons.forEach(button => {
         button.removeEventListener('click', handleAddToCart);
       });
     };
-  }, []); // Empty dependency array ensures this effect runs once
+  }, []);
 
-  // Toggle drawer closing
+  //CLOSE DRAWER ON CLICK
   const handleCloseDrawer = () => {
     setIsDrawerOpen(false);
   };
 
   return (
-    <div className={`fixed top-0 right-0 h-full bg-white z-[100] transition-transform duration-300 ease-in-out
-      ${isDrawerOpen ? 'w-[480px] translate-x-0' : 'w-0 translate-x-full'}`}>
+    <div data-cart-drawer className={`fixed top-0 right-0 h-full bg-white z-[100] transition-transform duration-300 ease-in-out p-8 border-l border-gray-600
+      ${isDrawerOpen ? 'open w-[480px] translate-x-0' : 'closed w-0 translate-x-full'}`}>
       <div className="h-full overflow-auto">
-        <button onClick={handleCloseDrawer} className="p-4">Close</button>
+        <div className="flex items-center justify-between border-b-2 border-red-800">
+          <h2 className="text-4xl">Your Cart <sup class="text-2xl">({cartData.item_count})</sup></h2>
+          <button onClick={handleCloseDrawer} className="p-4 text-black">X</button>
+        </div>
         {cartData.items.map(item => (
           <CartItem
             key={item.id}

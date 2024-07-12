@@ -44,11 +44,12 @@
       render 'adastra' with 'App.jsx'
     %}
   </head>
+  
   <body>
-    {% section 'cart-drawer' %}    
+    {% section 'cart-drawer' %}
     <header>
-      {% section 'announcement-bar'  %}
-      {% section 'navbar'  %}
+      {% section 'announcement-bar' %}
+      {% section 'navbar' %}
     </header>
     <main
       id="MainContent"
@@ -56,6 +57,7 @@
       {{ content_for_layout }}
     </main>
 
+    {% comment %} WINDOW OBJECTS {% endcomment %}
     <script>
       window.shopUrl = '{{ request.origin }}'
       window.routes = {
