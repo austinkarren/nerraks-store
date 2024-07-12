@@ -41,9 +41,11 @@
       # Always add entrypoint below content_for_header
       render 'adastra' with 'base.css'
       render 'adastra' with 'index.js'
+      render 'adastra' with 'App.jsx'
     %}
   </head>
-  <body>    
+  <body>
+    {% section 'cart-drawer' %}    
     <header>
       {% section 'announcement-bar'  %}
       {% section 'navbar'  %}

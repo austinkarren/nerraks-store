@@ -4,8 +4,7 @@ class NavBar extends HTMLElement {
     }
 
     connectedCallback() {
-        console.log("NAVBAR MOUNTED")
-        document.querySelectorAll('.parent-link').forEach(item => {
+        document.querySelectorAll('[data-parent-link]').forEach(item => {
             item.addEventListener('mouseenter', () => {
                 item.classList.add('submenu-open')
             })

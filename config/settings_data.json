@@ -1,6 +1,36 @@
 {
-  "current": {},
+  "current": {
+    "logo": "shopify:\/\/shop_images\/aablade.png",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "linked_text": "Subscribe",
+          "message": "to our newsletter and save 10% on your order!"
+        }
+      },
+      "navbar": {
+        "type": "navbar",
+        "settings": {
+          "blade_list": [
+            "saw-blade",
+            "saw-blade-three",
+            "saw-blade-two"
+          ],
+          "bit_list": [
+            "router-bit",
+            "router-bit-three",
+            "router-bit-two"
+          ]
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
   "presets": {
-    "Default": {}
+    "Default": {
+    }
   }
 }

@@ -1,8 +1,19 @@
 {
   "sections": {
     "main": {
-      "type": "main"
+      "type": "hello-world",
+      "settings": {
+      }
+    },
+    "product_card_wiwEwW": {
+      "type": "product-card",
+      "settings": {
+        "product": "saw-blade"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "product_card_wiwEwW"
+  ]
 }
