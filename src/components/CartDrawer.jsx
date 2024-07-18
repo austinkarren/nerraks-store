@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import CartItem from './CartItem';
+import CartHeader from './CartHeader';
+import CartFooter from './CartFooter';
 import formatPrice from '../scripts/globalUtils'; // Corrected typo
 
 const CartDrawer = () => {
@@ -80,26 +82,26 @@ const CartDrawer = () => {
   };
 
   return (
-    <div data-cart-drawer className={`fixed top-0 right-0 h-full bg-white z-[100] transition-transform duration-300 ease-in-out p-8 border-l border-gray-600
+    <div data-cart-drawer className={`flex flex-col fixed top-0 right-0 bottom-0 h-full bg-white z-[100] transition-transform duration-300 ease-in-out p-8 border-l border-gray-600
       ${isDrawerOpen ? 'open w-[480px] translate-x-0' : 'closed w-0 translate-x-full'}`}>
-      <div className="h-full overflow-auto">
-        <div className="flex items-center justify-between border-b-2 border-red-800">
-          <h2 className="text-4xl">Your Cart <sup class="text-2xl">({cartData.item_count})</sup></h2>
-          <button onClick={handleCloseDrawer} className="p-4 text-black">X</button>
-        </div>
+      <CartHeader
+        handleCloseDrawer={handleCloseDrawer}
+        cartCount={cartData.item_count}
+      />
+      <div className='flex-1 overflow-y-auto'>
         {cartData.items.map(item => (
           <CartItem
             key={item.id}
             title={item.title}
             price={formatPrice(item.price)}
             quantity={item.quantity}
+            img={item.featured_image.url}
           />
         ))}
-        <p>CART TOTAL: {formatPrice(cartData.items_subtotal_price)}</p>
-        <a href="/checkout">
-          <button>Checkout</button>
-        </a>
       </div>
+      <CartFooter
+        subtotal={formatPrice(cartData.items_subtotal_price)}
+      />
     </div>
   );
 };
